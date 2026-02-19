@@ -50,11 +50,11 @@ The dataset consists of records from the **Statewide Integrated Traffic Records 
 
 
 2. **Cleaning & Imputation**:
-* Identified and dropped sparse columns with over 15% missing values.
+  * Identified and dropped sparse columns with over 15% missing values.
 
-* Removed rows with critical missing values in columns like `jurisdiction`, `officer_id`, `beat_number`, `primary_road`, `secondary_road` and `collision_time` .
+  * Removed rows with critical missing values in columns like `jurisdiction`, `officer_id`, `beat_number`, `primary_road`, `secondary_road` and `collision_time` .
 
-* Imputed other missing values using the mean or mode (e.g., `victim_age` filled with mean).
+  * Imputed other missing values using the mean or mode (e.g., `victim_age` filled with mean).
 
 
 3. **Deduplication**: Duplicate records were removed using the `dropDuplicates()` method.
@@ -78,11 +78,11 @@ The dataset consists of records from the **Statewide Integrated Traffic Records 
 
 
 * **Temporal Trends**:
-* **Peak Days**: Fridays see more collisions compared to other weekdays.
+  * **Peak Days**: Fridays see more collisions compared to other weekdays.
 
-* **Peak Hours**: A significant peak occurs between 3:00 PM and 6:00 PM, with the highest frequency around 5:00 PM.
+  * **Peak Hours**: A significant peak occurs between 3:00 PM and 6:00 PM, with the highest frequency around 5:00 PM.
 
-* **Geographic High-Risk Areas**: **Los Angeles** was identified as the county with the highest collision count (over 230,000).
+  * **Geographic High-Risk Areas**: **Los Angeles** was identified as the county with the highest collision count (over 230,000).
 
 
 ## Recommendations & Policy Implications
@@ -96,3 +96,4 @@ The dataset consists of records from the **Statewide Integrated Traffic Records 
 * **Targeted Interventions**: Implement specialized driver training or safety campaigns for high-risk age demographics.
 
 * **Predictive Modeling**: Use historical data hotspots to develop models for proactive intervention and signage placement.
+
