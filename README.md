@@ -22,120 +22,77 @@ Traffic collisions pose significant risks to public safety, necessitating contin
 
 The dataset consists of records from the **Statewide Integrated Traffic Records System (SWITRS)**. It is structured into four primary tables:
 
-* 
-**Collisions**: Information about the incident location and vehicles involved.
+* **Collisions**: Information about the incident location and vehicles involved.
 
+* **Parties**: Details on groups involved, including age, sex, and sobriety.
 
-* 
-**Parties**: Details on groups involved, including age, sex, and sobriety.
+* **Victims**: Information regarding injuries of specific individuals.
 
-
-* 
-**Victims**: Information regarding injuries of specific individuals.
-
-
-* 
-**Locations**: Geographical data and road intersection details.
+* **Locations**: Geographical data and road intersection details.
 
 
 
 ## Tech Stack
 
-* 
-**Distributed Computing**: Apache Spark (PySpark).
+* **Distributed Computing**: Apache Spark (PySpark).
 
+* **Cloud Storage**: AWS S3.
 
-* 
-**Cloud Storage**: AWS S3.
+* **Language**: Python/PySpark SQL.
 
-
-* 
-**Language**: Python/PySpark SQL.
-
-
-* 
-**Visualization**: Compatibility for Tableau/Power BI.
+* **Visualization**: Compatibility for Tableau/Power BI.
 
 
 
 ## Data Preparation & ETL Process
 
-1. 
-**Data Loading**: Loaded into separate DataFrames for cleaning.
+1. **Data Loading**: Loaded into separate DataFrames for cleaning.
 
 
 2. **Cleaning & Imputation**:
 * Identified and dropped sparse columns with over 15% missing values.
 
-
 * Removed rows with critical missing values in columns like `jurisdiction`, `officer_id`, `beat_number`, `primary_road`, `secondary_road` and `collision_time` .
-
 
 * Imputed other missing values using the mean or mode (e.g., `victim_age` filled with mean).
 
 
+3. **Deduplication**: Duplicate records were removed using the `dropDuplicates()` method.
 
 
-3. 
-**Deduplication**: Duplicate records were removed using the `dropDuplicates()` method.
+4. **Outlier Analysis**: Numerical outliers in columns such as `distance` and `victim_age` were detected and handled using the **Interquartile Range (IQR)** method.
 
 
-4. 
-**Outlier Analysis**: Numerical outliers in columns such as `distance` and `victim_age` were detected and handled using the **Interquartile Range (IQR)** method.
-
-
-5. 
-**Final Counts**: After cleaning, the dataset contained **715,855** collision records and **944,131** victim records.
-
+5. **Final Counts**: After cleaning, the dataset contained **715,855** collision records and **944,131** victim records.
 
 
 ## Key Insights
 
-* 
-**Collision Severity**: Over 50% of recorded collisions resulted in property damage only.
+* **Collision Severity**: Over 50% of recorded collisions resulted in property damage only.
 
 
-* 
-**Weather & Lighting**: A majority of collisions occur in clear weather. While most take place in daylight, a substantial portion occurs in "dark with street lights".
+* **Weather & Lighting**: A majority of collisions occur in clear weather. While most take place in daylight, a substantial portion occurs in "dark with street lights".
 
 
-* 
-**Demographics**: There is a high frequency of victims in the 16–25 age range, with a notable peak at age 31.
+* **Demographics**: There is a high frequency of victims in the 16–25 age range, with a notable peak at age 31.
 
 
 * **Temporal Trends**:
-* 
-**Peak Days**: Fridays see more collisions compared to other weekdays.
+* **Peak Days**: Fridays see more collisions compared to other weekdays.
 
+* **Peak Hours**: A significant peak occurs between 3:00 PM and 6:00 PM, with the highest frequency around 5:00 PM.
 
-* 
-**Peak Hours**: A significant peak occurs between 3:00 PM and 6:00 PM, with the highest frequency around 5:00 PM.
-
-
-
-
-* 
-**Geographic High-Risk Areas**: **Los Angeles** was identified as the county with the highest collision count (over 230,000).
-
+* **Geographic High-Risk Areas**: **Los Angeles** was identified as the county with the highest collision count (over 230,000).
 
 
 ## Recommendations & Policy Implications
 
-* 
-**Strategic Audits**: Prioritize safety audits for top high-risk counties like Los Angeles, Orange, and San Diego.
+* **Strategic Audits**: Prioritize safety audits for top high-risk counties like Los Angeles, Orange, and San Diego.
 
+* **Infrastructure Improvements**: Target peak collision hours with improved street lighting and automated traffic monitoring.
 
-* 
-**Infrastructure Improvements**: Target peak collision hours with improved street lighting and automated traffic monitoring.
+* **Traffic Management**: Optimize signal timing to manage flow during peak hours and reduce rear-end collisions.
 
+* **Targeted Interventions**: Implement specialized driver training or safety campaigns for high-risk age demographics.
 
-* 
-**Traffic Management**: Optimize signal timing to manage flow during peak hours and reduce rear-end collisions.
-
-
-* 
-**Targeted Interventions**: Implement specialized driver training or safety campaigns for high-risk age demographics.
-
-
-* 
-**Predictive Modeling**: Use historical data hotspots to develop models for proactive intervention and signage placement.
+* **Predictive Modeling**: Use historical data hotspots to develop models for proactive intervention and signage placement.
